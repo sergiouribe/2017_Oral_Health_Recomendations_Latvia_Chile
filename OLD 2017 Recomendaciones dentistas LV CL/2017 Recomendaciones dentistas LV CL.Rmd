@@ -1,0 +1,174 @@
+---
+title: "Recomendaciones dentistas Cl LV"
+output: 
+  html_notebook: 
+    toc: yes
+---
+```{r}
+require("tidyverse")
+library(knitr)
+
+```
+```{r}
+df <- read_csv("recomendaciones_cl_lv_simplificado.csv")
+```
+
+
+```{r}
+Dentista <- df %>% 
+  filter(`Ud es:` == "Dentista")
+
+Estudiante <- df %>% 
+  filter(`Ud es:` == "Estudiante")
+```
+
+# Dentistas
+## Tablas dentistas
+```{r tablas dentistas}
+kable(table(Dentista$Pais, Dentista$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`))
+kable(	table(Dentista$Pais, Dentista$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	)
+kable(	table(Dentista$Pais, Dentista$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	)
+kable(	table(Dentista$Pais, Dentista$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	)
+kable(	table(Dentista$Pais, Dentista$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	)
+kable(	table(Dentista$Pais, Dentista$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	)
+kable(	table(Dentista$Pais, Dentista$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	)
+kable(	table(Dentista$Pais, Dentista$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	)
+kable(	table(Dentista$Pais, Dentista$`14. La persona promedio de mi país tiene buena salud oral.`)	)
+kable(	table(Dentista$Pais, Dentista$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	)
+kable(	table(Dentista$Pais, Dentista$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	)
+kable(	table(Dentista$Pais, Dentista$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	)
+kable(	table(Dentista$Pais, Dentista$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	)
+
+
+```
+## Prop table dentists
+```{r}
+kable(prop.table(table(Dentista$Pais, Dentista$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`), 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`14. La persona promedio de mi país tiene buena salud oral.`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	, 1)*100)
+kable(	prop.table(table(Dentista$Pais, Dentista$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	, 1)*100)
+
+```
+
+## Test dentistas
+```{r test dentistas}
+chisq.test(	table(Dentista$Pais, Dentista$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`14. La persona promedio de mi país tiene buena salud oral.`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	)
+chisq.test(	table(Dentista$Pais, Dentista$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	)
+
+```
+
+## Graficos dentistas
+```{r graf dentistas}
+mosaicplot(	table(Dentista$Pais, Dentista$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`14. La persona promedio de mi país tiene buena salud oral.`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	, shade = T)
+mosaicplot(	table(Dentista$Pais, Dentista$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	, shade = T)
+
+```
+
+
+# Estudiantes
+## Tablas estudiantes
+```{r tablas estudiantes}
+kable(	table(Estudiante$Pais, Estudiante$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`)	)
+kable(	table(Estudiante$Pais, Estudiante$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	)
+kable(	table(Estudiante$Pais, Estudiante$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	)
+kable(	table(Estudiante$Pais, Estudiante$`14. La persona promedio de mi país tiene buena salud oral.`)	)
+kable(	table(Estudiante$Pais, Estudiante$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	)
+kable(	table(Estudiante$Pais, Estudiante$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	)
+kable(	table(Estudiante$Pais, Estudiante$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	)
+kable(	table(Estudiante$Pais, Estudiante$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	)
+
+
+
+```
+
+## Prop table estudiante
+```{r}
+kable(prop.table(table(Estudiante$Pais, Estudiante$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`), 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`14. La persona promedio de mi país tiene buena salud oral.`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	, 1)*100)
+kable(	prop.table(table(Estudiante$Pais, Estudiante$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	, 1)*100)
+
+```
+
+
+
+## Test estudiantes
+```{r test estudiantes}
+options(digits = 3)
+chisq.test(	table(Estudiante$Pais, Estudiante$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`14. La persona promedio de mi país tiene buena salud oral.`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	)
+chisq.test(	table(Estudiante$Pais, Estudiante$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`)	)
+```
+
+## Graficos estudiantes
+```{r graf estudiantes}
+mosaicplot(	table(Estudiante$Pais, Estudiante$`1. Entregaría recomendaciones de higiene oral a pacientes adultos`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`3. ¿Le entregaría recomendación de higiene oral a CADA paciente adulto?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`4. ¿Cuánto tiempo dedicaría dando recomendaciones de higiene oral?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`8.c) Cuando recomienda el cepillado dental, ¿con qué frecuencia recomendaría usted cambiar el cepillo de dientes?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`8.f) Cuando recomienda el cepillado dental, ¿recomendaría usted una técnica de cepillado?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`10.c) Cuando recomienda pasta dental, ¿cuanta cantidad de pasta de dientes a utilizar cada vez?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`12.a) Cuando recomienda la limpieza interdental, ¿recomendaría un tipo de dispositivo interdental?`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`13. La higiene oral juega un rol causal en muchas enfermedades orales.`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`14. La persona promedio de mi país tiene buena salud oral.`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`15. Modificaciones a la higiene oral pueden prevenir muchas enfermedades oral.`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`16. La profilaxis profesional no tiene efecto sobre la salud oral de los individuos.`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`17. Los dentistas no dan suficientes recomendaciones sobre higiene oral a sus pacientes.`)	, shade = T)
+mosaicplot(	table(Estudiante$Pais, Estudiante$`18. El personal dental (dentistas y auxiliares) desempeñan el mismo rol en brindar consejos de higiene oral a los pacientes.`	, shade = T)
+
+```
